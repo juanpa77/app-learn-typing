@@ -1,0 +1,41 @@
+
+.container {
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.key {
+  background-color: #dfdbdb;
+  align-content: center;
+  text-align: center;
+  color: #181818;
+  font-size: 25pt;
+  font-weight: 700;
+  width: var(--key-size-width);
+  height: 56.7px;
+  border-radius: 9px;
+}
+
+.row__keys{
+display: flex;
+gap: 14px;
+}
+
+.row__keys:first-child {
+  & .key:first-child {
+    width: calc(var(--key-size-width) + 38px);
+  }
+}
+
+.row__keys:nth-child(2) {
+  & .key:first-child {
+    width: calc(var(--key-size-width) + 62px);
+  }
+}
+
+.row__keys:nth-child(3) {
+  & .key:first-child {
+    width: calc(var(--key-size-width) + 19px);
+  }
+}
