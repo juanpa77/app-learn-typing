@@ -2,11 +2,13 @@ import { useState, useEffect } from "react"
 
 const useCheckLetter = (letters: string[]) => {
   const totalLetters = letters.length
+  const formatLetters = letters.map(letter => letter.toLowerCase())
+
   const [indexLetter, setIndexLetter] = useState(0)
   const [keyPress, setKeyPress] = useState('')
 
   const handleOnKeyDown = (e: KeyboardEvent) => setKeyPress(e.key)
-  const isCorrectKeyPress = letters[indexLetter] === keyPress
+  const isCorrectKeyPress = formatLetters[indexLetter] === keyPress
 
   useEffect(() => {
     document.addEventListener('keydown', handleOnKeyDown)
@@ -14,7 +16,6 @@ const useCheckLetter = (letters: string[]) => {
       ? setIndexLetter(indexLetter + 1)
       : ''
 
-    console.log(indexLetter)
     return () => {
       document.removeEventListener('keydown', handleOnKeyDown)
     }
