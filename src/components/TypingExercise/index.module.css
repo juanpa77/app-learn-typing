@@ -5,7 +5,6 @@
 }
 
 .letter {
-opacity: 0;
  background-color: #360757;
  width: 112px;
  padding: 20px;
@@ -35,4 +34,9 @@ opacity: 0;
   100%{
     transform:translateZ(0) translateY(0);opacity:1
   }
+}
+
+
+.hidden{
+  opacity: 0;
 }

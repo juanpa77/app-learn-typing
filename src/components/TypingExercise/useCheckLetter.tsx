@@ -6,6 +6,7 @@ const useCheckLetter = (letters: string[]) => {
 
   const [indexLetter, setIndexLetter] = useState(0)
   const [keyPress, setKeyPress] = useState('')
+  const [animate, setAnimate] = useState(false)
 
   const handleOnKeyDown = (e: KeyboardEvent) => setKeyPress(e.key)
   const isCorrectKeyPress = formatLetters[indexLetter] === keyPress
@@ -16,12 +17,15 @@ const useCheckLetter = (letters: string[]) => {
       ? setIndexLetter(indexLetter + 1)
       : ''
 
+    setAnimate(false)
+    setTimeout(() => setAnimate(true), 800)
+
     return () => {
       document.removeEventListener('keydown', handleOnKeyDown)
     }
   }, [indexLetter, isCorrectKeyPress])
 
-  return indexLetter
+  return { indexLetter, animate }
 }
 
 export default useCheckLetter
