@@ -3,11 +3,13 @@
 import style from './index.module.css'
 import useCheckLetter from './useCheckLetter'
 const TypingExercise = ({ letters }: { letters: string[] }) => {
-  const { indexLetter, animate } = useCheckLetter(letters)
+  const { currentCharacter, animate } = useCheckLetter(letters)
 
   return (
     <div className={style.container}>
-      <div className={`${style.letter} ${animate ? style.animate : style.hidden}`}>{letters[indexLetter]}</div>
+      <div className={`${style.letter} ${animate ? style.animate : style.hidden}`}>
+        {currentCharacter}
+      </div>
     </div>
   )
 }
