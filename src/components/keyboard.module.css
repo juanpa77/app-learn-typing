@@ -39,3 +39,8 @@ gap: 14px;
     width: calc(var(--key-size-width) + 19px);
   }
 }
+
+.activeKey {
+  background-color: #360757;
+color: white;
+}

@@ -1,6 +1,11 @@
 import style from './keyboard.module.css'
 
-const Keyboard = () => {
+type Props = {
+  character: string
+}
+const Keyboard = ({ character }: Props) => {
+  const formatCharacter = character.toUpperCase()
+
   const tabRowKeys = [
     ['⇄', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',],
     ['', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',],
@@ -13,7 +18,11 @@ const Keyboard = () => {
           <div className={style.row__keys} key={rowKeys[2]}>
             {
               rowKeys.map(key =>
-                <div className={style.key} key={key}>{key}</div>
+                <div
+                  className={`${style.key} ${formatCharacter === key && style.activeKey}`}
+                  key={key}>
+                  {key}
+                </div>
               )
             }
           </div>
