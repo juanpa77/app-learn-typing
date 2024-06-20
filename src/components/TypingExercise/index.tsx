@@ -1,5 +1,6 @@
 'use client'
 
+import Keyboard from '../keyboard'
 import style from './index.module.css'
 import useCheckLetter from './useCheckLetter'
 const TypingExercise = ({ letters }: { letters: string[] }) => {
@@ -10,6 +11,7 @@ const TypingExercise = ({ letters }: { letters: string[] }) => {
       <div className={`${style.letter} ${animate ? style.animate : style.hidden}`}>
         {currentCharacter}
       </div>
+      <Keyboard character={currentCharacter} />
     </div>
   )
 }
