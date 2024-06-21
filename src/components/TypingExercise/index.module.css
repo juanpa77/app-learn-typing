@@ -39,6 +39,12 @@
   }
 }
 
+.winnings {
+  background-color: #de5c5c;
+  font-size: 30pt;
+  font-weight: 600;
+  padding: 30px;
+}
 
 .hidden{
   opacity: 0;
