@@ -4,7 +4,8 @@
   justify-content: space-between;
   width: 100%;
   min-height: 900px;
-  height: 100%;
+  height: 100dvh;
+  padding: 1rem;
 }
 
 .letter {
@@ -40,12 +41,25 @@
 }
 
 .winnings {
+  position: absolute;
+  top: 20px;
+  right: 50px;
   background-color: #de5c5c;
-  font-size: 30pt;
+  font-size: 25pt;
   font-weight: 600;
-  padding: 30px;
+  padding: 10px;
 }
 
 .hidden{
   opacity: 0;
+}
+
+.shootKeyContainer  {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  min-height: 400px;
+  height: 100%;
 }
