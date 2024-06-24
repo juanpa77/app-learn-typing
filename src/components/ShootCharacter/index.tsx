@@ -1,18 +1,21 @@
 
+import { Key } from '@/keyPosition'
 import style from './index.module.css'
 
 type Props = {
-  character: string,
+  character: Key,
   keyPosition: {
     x: number,
     y: number
   }
+  deleteShoot: (key: Key) => void
 }
-const ShootCharacter = ({ character, keyPosition }: Props) => {
+const ShootCharacter = ({ character, keyPosition, deleteShoot }: Props) => {
   // const [animate, setAnimate] = useState(false)
 
   return (
     <div
+      onAnimationEnd={() => deleteShoot(character)}
       className={`${style.shootKey} ${''}`}
       style={{
         top: `${keyPosition.y}px`,
