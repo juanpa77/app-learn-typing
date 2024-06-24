@@ -1,5 +1,5 @@
 
-export const keyPosition = {
+export const keysPosition = {
   "⇄": { "x": 15.99609375, "y": 854.66796875 },
   "q": { "x": 122.96875, "y": 854.66796875 },
   "w": { "x": 191.953125, "y": 854.66796875 },
@@ -31,4 +31,26 @@ export const keyPosition = {
   "m": { "x": 586.85546875, "y": 996.03515625 }
 }
 
-export type Keys = keyof typeof keyPosition
+export type Key = keyof typeof keysPosition
+
+type keysPosition = {
+  [K in keyof typeof keysPosition]: {
+    x: number
+    y: number
+  }
+}
+
+export type Keys = {
+  key: Key
+  x: number
+  y: number
+}
+
+export type KeyPosition = Partial<keysPosition>
+
+// const test: Keys = {
+//   a: {
+//     x: 1,
+//     y: 1
+//   }
+// }
