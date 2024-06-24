@@ -3,17 +3,40 @@
 import { useEffect, useState } from 'react'
 import Keyboard from '../keyboard'
 import style from './index.module.css'
-import useCheckLetter from './useCheckLetter'
-import { Keys, keyPosition } from '@/keyPosition'
+import useCheckLetter, { useKey } from './useCheckLetter'
+import { keysPosition, Key, Keys } from '@/keyPosition'
 import ShootCharacter from '../ShootCharacter'
+
+// TODO - Add Id to shotsInScreen to prevent delete all shoot with same character
 const TypingExercise = ({ letters }: { letters: string[] }) => {
-  const { currentCharacter, animate, winnings, keyPress } = useCheckLetter(letters)
+
+  const { currentCharacter, animate, winnings, setKeyPress } = useCheckLetter(letters)
   const [shotsInScreen, setShotsInScreen] = useState<Keys[]>([])
-  useEffect(() => {
-    if (keyPress && keyPosition.hasOwnProperty(keyPress)) {
-      setShotsInScreen([...shotsInScreen, keyPress as Keys])
+  const $currentCharacter = document.getElementsByClassName(style.letter)[0] as HTMLDivElement
+
+  const currentCharacterPosition = {
+    x: $currentCharacter?.offsetTop,
+    y: $currentCharacter?.offsetLeft
+  }
+
+  console.log(currentCharacterPosition)
+  const onKeyPress = (key: string) => {
+    if (key && keysPosition.hasOwnProperty(key)) {
+      setKeyPress(key)
+      setShotsInScreen(shots => [
+        ...shots,
+        {
+          key: key as Key,
+          x: keysPosition[key as Key].x,
+          y: keysPosition[key as Key].y
+        }
+      ])
     }
-  }, [keyPress])
+  }
+
+  const deleteShoot = (key: Key) => setShotsInScreen(shotsInScreen.filter(shoot => shoot.key !== key))
+  // console.log(shotsInScreen)
+  const keyPress = useKey(onKeyPress)
 
   return (
     <div className={style.container}>
@@ -27,13 +50,15 @@ const TypingExercise = ({ letters }: { letters: string[] }) => {
       <div className={style.shootKeyContainer}>
         {
           shotsInScreen.map((shoot, i) =>
+            // shoot.
             <ShootCharacter
-              key={shoot + i}
-              character={shoot}
+              key={shoot.key + i}
+              character={shoot.key}
               keyPosition={{
-                x: keyPosition[shoot].x,
-                y: keyPosition[shoot].y
+                x: shoot.x,
+                y: shoot.y
               }}
+              deleteShoot={deleteShoot}
             />)
         }
       </div>
